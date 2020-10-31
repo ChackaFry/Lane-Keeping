@@ -1,0 +1,119 @@
+\documentclass[a4paper,16pt,reqno]{article}
+
+\usepackage{gensymb}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{subfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{inputenc}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{listings}
+
+\begin{document}
+
+\section{Question 3}
+
+\begin{equation*}
+\dot{Z} = 
+\begin{bmatrix}
+\dot{x}\cr
+\dot{y}\cr
+\dot{\theta}\cr
+\end{bmatrix}
+=
+\begin{bmatrix}
+v\cos(\theta)\cr
+v\sin(\theta)\cr
+\frac{v}{L}\tan(u)\cr
+\end{bmatrix}
+\end{equation*}
+
+\[\frac{d\theta}{dt} = \frac{v}{L}\tan(u)\]
+\[\int \frac{d\theta}{dt}\,dt = \int \frac{v}{L}\tan(u)\,dt \]
+\[\theta = \frac{v}{L}\tan(u)t + c\]
+\[\theta = \frac{v}{L}\tan(u)(0) + c\]
+\[\theta(0) = \theta_0 = c\]
+\[\therefore \theta = \frac{v}{L}\tan(u)t + \theta_0\]\\
+
+
+\[\frac{dx}{dt} = v\cos(\theta)\]
+\[\frac{dx}{dt} = v\cos(\frac{v}{L}\tan(u)t + \theta_0)\]
+\[\int \frac{dx}{dt}\, dt = \int v\cos(\frac{v}{L}\tan(u)t + \theta_0)\, dt\]
+\[x= \frac{L}{\tan{u}}\sin(\frac{v}{L}\tan(u)t + \theta_0) + d\]
+\[x(0)= \frac{L}{\tan{u}}\sin(\frac{v}{L}\tan(u)(0) + \theta_0) + d\]
+\[x(0)= x_0 = \frac{L}{\tan{u}}\sin(\theta_0) + d\]
+\[d = x_0 - \frac{L}{\tan{u}}\sin(\theta_0)\]
+\[\therefore x= \frac{L}{\tan{u}}\sin(\theta) - \frac{L}{\tan{u}}\sin(\theta_0) + x_0\]\\
+
+
+\[\frac{dy}{dt} = v\sin(\theta)\]
+\[\frac{dy}{dt} = v\sin(\frac{v}{L}\tan(u)t + \theta_0)\]
+\[\int \frac{dy}{dt}\, dt = \int v\sin(\frac{v}{L}\tan(u)t + \theta_0)\, dt\]
+\[y = \frac{-L}{\tan{u}}\cos(\frac{v}{L}\tan(u)t + \theta_0) + f\]
+\[y(0) = \frac{-L}{\tan{u}}\cos(\frac{v}{L}\tan(u)(0) + \theta_0) + f\]
+\[y(0)= y_0 = \frac{-L}{\tan{u}}\cos(\theta_0) + f\]
+\[f = y_0 + \frac{L}{\tan{u}}\cos(\theta_0)\]
+\[\therefore y= \frac{-L}{\tan{u}}\cos(\theta) + \frac{L}{\tan{u}}\cos(\theta_0) + y_0\]\\
+
+
+\begin{equation*}
+Z = 
+\begin{bmatrix}
+x\\
+y\\
+\theta
+\end{bmatrix}
+=
+\begin{bmatrix}
+\frac{L}{\tan{u}}\sin(\theta) - \frac{L}{\tan{u}}\sin(\theta_0) + x_0\cr
+\frac{-L}{\tan{u}}\cos(\theta) + \frac{L}{\tan{u}}\cos(\theta_0) + y_0\cr
+\frac{v}{L}\tan(u)t + \theta_0\cr
+\end{bmatrix}
+\end{equation*}
+
+\bigskip
+\noindent
+For $x_0 = 0\si{m}$, $y_0 = 0\si{m}$, the input values, scipy's solve\_ivp answers, and the calculated values are shown. \\
+Note: All $\theta_0$ values have been fixed to the range, $(-180\degree, 180\degree]$ and only correct to 3sf. \\
+\bigskip
+
+\begin{tabular}{| c c c c | c c c | c c c |}
+\hline
+\multicolumn{4}{| c |}{Variables} & \multicolumn{3}{c |}{solve\_ivp Values} & \multicolumn{3}{c |}{Calculated Values} \\ \hline
+L & v & u & $\theta_0$ & x & y & $\theta$ & x & y & $\theta$ \cr \hline
+2.3 & 5 & -2 & 5 & -29.628 & -121.174 & 147.520 & -29.628 & -121.174 & 147.520\cr
+2.5 & 5 & -10 & 20 & -9.329 & -13.254 & 89.721 & -9.329 & -13.254 & 89.721\cr
+5 & 10 & -30 & 40 & 9.629 & 1.014 & -27.973 & 9.629 & 1.014 & -27.973\cr
+5 & 5 & -60 & 40 & -0.692 & -3.568 & 118.040 & -0.692 & -3.568 & 118.040\cr
+10 & 10 & -60 & 40 & -1.385 & -7.137 & 118.040 & -1.385 & -7.137 & 118.040\cr
+\hline
+\end{tabular}
+
+\bigskip
+\noindent
+From the table, it is clear that solve\_ivp values and calculated value are identical.
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
